@@ -1,4 +1,5 @@
 streamlit
+streamlit-extras
 st-pages
 pytesseract==0.3.8
 regex==2020.10.28
@@ -8,3 +9,5 @@ nltk
 sentence-transformers
 Sastrawi
 pandas
+seaborn
+matplotlib
