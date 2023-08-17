@@ -5,6 +5,7 @@ from streamlit_extras.colored_header import colored_header
 from st_pages import add_page_title
 from pages.preprocess import *
 import pandas as pd
+import os
 
 df_current = pd.read_csv('assets/inicsv.csv')
 
@@ -78,11 +79,14 @@ if pdf_file:
 
                 st.info(totalPages)
                 
+                # Extract filename without extension
+                file_name_without_extension = os.path.splitext(pdf_file.name)[0]
+                
                 # Create a dictionary to store data
                 data = {
                     "Tingkatan": tingkatan_perundangan,
                     "ExtractedText": text_data_f,
-                    "FileName": pdf_file.name  # Adding the filename to the data
+                    "FileName": file_name_without_extension  # Using the filename without extension
                 }
                 
                 # Convert dictionary to JSON
@@ -94,52 +98,3 @@ if pdf_file:
                 df_preprocess = preprocessing_text(df)
                 concat = pd.concat([df_current, df_preprocess], ignore_index=True)
                 concat.to_csv('assets/inicsv.csv', index=False)
-                
-                # Display JSON
-                # st.text("Raw Data in JSON format:")
-                # st.text(json_data)
-
-                # In dataframe format, before
-                # st.text("Data in Dataframe format, before preprocess:")
-                # df = pd.DataFrame([[data['Tingkatan'], data['FileName'], data['ExtractedText']]], 
-                #                     columns=['Tingkatan', 'FileName', 'ExtractedText'])
-                # df
-                
-                # # In dataframe format after preprocess
-                # st.text("Data in Dataframe format, after preprocess:")
-                # a = preprocessing_text(df)
-                # a
-
-                # button
-                # if st.button("Submit to Database"):
-                #     st.error("Do you really, really, wanna do this?")
-                # st.download_button("Download txt file", text_data_f)   
-
-                # colored_header(
-                #     label="5. Unduh atau Kirim?",
-                #     description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                #     color_name="violet-70",
-                # )
-                
-                # st.download_button("Download txt file", text_data_f)
-                # # Create a placeholder to display the extracted text
-                # text_placeholder = st.empty()
-
-                # if st.button('Submit to Database'):
-                #     a = pd.DataFrame([[data['Tingkatan'], data['FileName'], data['ExtractedText']]], 
-                #                     columns=['Tingkatan', 'FileName', 'ExtractedText'])
-                #     b = preprocessing_text(a)
-                #     b
-                #     st.write('Data submitted to database')
-
-                # colored_header(
-                #     label="TESTT TESTTT",
-                #     description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                #     color_name="violet-70",
-                # )
-                
-                # a = df = pd.DataFrame([[data['Tingkatan'], data['FileName'], data['ExtractedText']]], 
-                #   columns=['Tingkatan', 'FileName', 'ExtractedText'])
-                # a
-                # b = preprocessing_text(a)
-                # b
