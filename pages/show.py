@@ -8,7 +8,7 @@ add_page_title(layout="wide")
 
 colored_header(
     label="Data yang Digunakan",
-    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description="",
     color_name="violet-70",
 )
 
@@ -20,6 +20,6 @@ col1, col2= st.columns(2)
 col1.metric("Jumlah Data", len(df.index))
 col2.metric("Jenis Peraturan", df['Tingkatan'].nunique())
 
-filter_df = df[["Tingkatan", "FileName", "ExtractedText", "cleaned_text", "final_text"]]
+filter_df = df[["Tingkatan", "FileName"]]
 filtered_df = dataframe_explorer(filter_df, case=False)
 st.dataframe(filtered_df, use_container_width=True)

@@ -12,7 +12,7 @@ add_page_title(layout="wide")
 
 colored_header(
     label="1. Upload Data",
-    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description="",
     color_name="violet-70",
 )
 
@@ -27,7 +27,7 @@ pdf_file = st.file_uploader("Load your PDF", type=['pdf', 'png', 'jpg'])
 if pdf_file:
     colored_header(
         label="2. Tipe Perundang-undangan",
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        description="",
         color_name="violet-70",
     )
 
@@ -65,7 +65,7 @@ if pdf_file:
             if file_extension == "pdf":
                 colored_header(
                     label="3. Cek Data",
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    description="",
                     color_name="violet-70",
                 )
                 # Display document
