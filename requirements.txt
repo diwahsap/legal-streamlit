@@ -11,3 +11,5 @@ Sastrawi
 pandas
 seaborn
 matplotlib
+fuzzywuzzy
+python-Levenshtein

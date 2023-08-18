@@ -21,11 +21,14 @@ colored_header(
 df = pd.read_csv('assets/inicsv.csv')
 filter_df = df[["Tingkatan", "FileName", "ExtractedText", "cleaned_text", "final_text"]]
 
+all_selaras = pd.read_csv('assets/all_selaras.csv')
+# all_selaras = all_selaras.iloc[:, 1:]
+
 # Input field for Tingkatan Perundangan
 tingkatan_options = [
     "Peraturan Pemerintah",
     "Peraturan Presiden",
-    "Peraturan Menteri",
+    # "Peraturan Menteri",
     "UU_Perpu"
 ]
 
@@ -104,13 +107,6 @@ col3.metric("Tidak Selaras", int(counts.loc['Tidak Selaras'].sum()))
 st.write("")
 st.dataframe(label_df, use_container_width=True)
 
-# st.write("Total Peraturan yang mirip")
-# counts = label_df.apply(pd.Series.value_counts).fillna(0)
-# col1, col2, col3= st.columns(3)
-# col1.metric("Netral", int(counts.loc['Netral'].sum()))
-# col2.metric("Selaras", int(counts.loc['Selaras'].sum()))
-# col3.metric("Tidak Selaras", int(counts.loc['Tidak Selaras'].sum()))
-
 row_indices, col_indices = np.where(label_df == 'Selaras')
 row_names = label_df.index[row_indices]
 col_names = label_df.columns[col_indices]
@@ -131,4 +127,29 @@ for i in range(len(df_selaras)):
 
 st.dataframe(df_selaras[['Perundangan1', 'Perundangan2']], use_container_width=True)
 
+st.dataframe(all_selaras[['Perundangan1', 'Perundangan2']], use_container_width=True)
 
+# last_row_df_selaras = df_selaras.iloc[-1, 0:2]
+all_row_df_selaras = all_selaras.iloc[:, 0:2]
+
+# Convert last row to a DataFrame for concatenation
+# last_row_df = pd.DataFrame([last_row_df_selaras])
+last_row_df = df_selaras[['Perundangan1', 'Perundangan2']]
+
+
+if data1 == data2:
+    pass
+else:
+    # Check if the last row is not in all_selaras
+    if not all_selaras.isin(all_row_df_selaras).any().any():
+        # Concatenate the last row DataFrame to all_selaras
+        all_selaras = pd.concat([all_selaras, last_row_df], ignore_index=True)
+        all_selaras = all_selaras.drop_duplicates(subset = ['Perundangan1', 'Perundangan2'],keep = 'first', inplace=True)
+
+        # Save to CSV
+        all_selaras.to_csv('assets/all_selaras.csv', index=False)
+
+
+# last_row_all_selaras = all_selaras.iloc[-1]
+# st.dataframe(last_row_df_selaras, use_container_width=True)
+# st.dataframe(last_row_all_selaras, use_container_width=True)
