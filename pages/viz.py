@@ -34,7 +34,7 @@ with st.expander("Visualisasi Seluruh Klaster"):
     # Visualize the graph
     pos = nx.spring_layout(G, seed = 55)
     plt.figure(figsize=(20, 12))
-    num_colors = 13
+    num_colors = len(topics_dict)
     colormap = plt.cm.get_cmap('tab20', num_colors)
     for i, topic in enumerate(topics):
         color = colormap(i)
@@ -72,6 +72,6 @@ wrapped_labels = {node: '\n'.join(textwrap.wrap(node, width=20)) for node in G_t
 nx.draw_networkx_labels(G_topic, label_pos, labels=wrapped_labels, font_size=5, font_color='black', font_weight='bold')
 
 plt.axis('off')
-plt.title(f"Relationships in Cluster {cluster_selection}")
+plt.title(f"Hubungan Keselarasan pada Klaster {cluster_selection}")
 
 st.pyplot(plt)
