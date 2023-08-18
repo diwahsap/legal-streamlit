@@ -8,7 +8,7 @@ show_pages(
         Page("pages/show.py", "Tampilkan Data Sekarang", ":books:"),
         Page("pages/pdf_text.py", "Tambahkan Data", "📝 "),
         Page("pages/antar_tingkat.py", "Analisis Keselarasan", "🧐"),
-        Page("pages/viz.py", "Visualisasi Berdasarkan Klaster", "🔢"),
-        Page("pages/selection.py", "Visualisasi Berdasarkan Undang-Undang", "🔢")
+        Page("pages/viz.py", "Visualisasi Klaster", "🔢"),
+        Page("pages/selection.py", "Visualisasi Undang-Undang", "🔢")
     ]
 )

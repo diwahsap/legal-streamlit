@@ -127,7 +127,7 @@ for i in range(len(df_selaras)):
 
 st.dataframe(df_selaras[['Perundangan1', 'Perundangan2']], use_container_width=True)
 
-st.dataframe(all_selaras[['Perundangan1', 'Perundangan2']], use_container_width=True)
+# st.dataframe(all_selaras[['Perundangan1', 'Perundangan2']], use_container_width=True)
 
 # last_row_df_selaras = df_selaras.iloc[-1, 0:2]
 all_row_df_selaras = all_selaras.iloc[:, 0:2]
