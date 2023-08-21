@@ -6,6 +6,7 @@ from st_pages import add_page_title
 from pages.preprocess import *
 import pandas as pd
 import os
+import time
 
 df_current = pd.read_csv('assets/inicsv.csv')
 
@@ -59,6 +60,7 @@ if pdf_file:
     
     # Submit button
     if st.button("Submit"):
+        start_time = time.time()
         if pdf_file:
             path = pdf_file.read()
             file_extension = pdf_file.name.split(".")[-1]
@@ -98,3 +100,7 @@ if pdf_file:
                 df_preprocess = preprocessing_text(df)
                 concat = pd.concat([df_current, df_preprocess], ignore_index=True)
                 concat.to_csv('assets/inicsv.csv', index=False)
+                st.success("Data berhasil ditambahkan")
+                end_time = time.time()
+                execution_time = end_time - start_time
+                st.warning(f"Memerlukan waktu {execution_time:.2f} detik untuk dieksekusi.")

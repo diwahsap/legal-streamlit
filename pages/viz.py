@@ -6,9 +6,9 @@ from st_pages import add_page_title
 import matplotlib.pyplot as plt
 import networkx as nx
 import textwrap
+import time
 
 add_page_title(layout="wide")
-
 
 colored_header(
     label="Network Visualization",
@@ -54,6 +54,8 @@ with st.expander("Visualisasi Seluruh Klaster"):
 
 cluster_selection = st.selectbox("Select a cluster:", list(range(1, 17)), index=0)
 
+start_time = time.time()
+
 selected_nodes = topics[cluster_selection - 1]
 G_topic = G.subgraph(selected_nodes)
 
@@ -76,3 +78,8 @@ plt.axis('off')
 plt.title(f"Hubungan Keselarasan pada Klaster {cluster_selection}")
 
 st.pyplot(plt)
+
+end_time = time.time()
+execution_time = end_time - start_time
+
+st.warning(f"Memerlukan waktu {execution_time:.2f} detik untuk dieksekusi.")

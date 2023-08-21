@@ -8,6 +8,7 @@ from pages.functions_preprocess_data import *
 from sklearn.metrics.pairwise import cosine_similarity
 import seaborn as sns
 import matplotlib.pyplot as plt
+import time
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 add_page_title(layout="wide")
@@ -43,6 +44,7 @@ selected_df = filter_df.query(f'Tingkatan == "{data1}" or Tingkatan == "{data2}"
 # show dataframe
 # st.dataframe(selected_df, use_container_width=True)
 
+start_time = time.time()
 # Convert the tf-idf matrix to a dense matrix
 tfidf_matrix, feature_names = tfidf(selected_df['final_text'])
 tfidf_matrix_dense = tfidf_matrix.toarray()
@@ -59,8 +61,13 @@ with st.expander("TF-IDF Matrix"):
     DTM_df = pd.DataFrame(tfidf_matrix.toarray(), columns = feature_names)
     DTM_df.index = selected_df['FileName']
     st.dataframe(DTM_df, use_container_width=True)
+    end_time = time.time()
+    execution_time = end_time - start_time
+
+    st.warning(f"Memerlukan waktu {execution_time:.2f} detik untuk dieksekusi.")
 
 # Create the array of cosine similarity values
+start_time = time.time()
 cosine_similarity_array = cosine_similarity(DTM_df)
 
 # Wrap the array in a pandas DataFrame
@@ -78,8 +85,16 @@ if tab_selection == "📈 Chart":
     plt.figure(figsize=(10, 8))
     sns.heatmap(filtered_df, annot=False, cmap='viridis')
     st.pyplot()
+    end_time = time.time()
+    execution_time = end_time - start_time
+
+    st.warning(f"Memerlukan waktu {execution_time:.2f} detik untuk dieksekusi.")
 else:
     st.dataframe(filtered_df, use_container_width=True)
+    end_time = time.time()
+    execution_time = end_time - start_time
+
+    st.warning(f"Memerlukan waktu {execution_time:.2f} detik untuk dieksekusi.")
 
 def convert_to_label(score):
     if score < 0.2:
@@ -89,6 +104,7 @@ def convert_to_label(score):
     else:
         return 'Selaras'
 
+start_time = time.time()
 # Apply the function element-wise to the filtered_df DataFrame
 label_df = filtered_df.applymap(convert_to_label)
 
@@ -106,7 +122,11 @@ col3.metric("Tidak Selaras", int(counts.loc['Tidak Selaras'].sum()))
 
 st.write("")
 st.dataframe(label_df, use_container_width=True)
+end_time = time.time()
+execution_time = end_time - start_time
+st.warning(f"Memerlukan waktu {execution_time:.2f} detik untuk dieksekusi.")
 
+start_time = time.time()
 row_indices, col_indices = np.where(label_df == 'Selaras')
 row_names = label_df.index[row_indices]
 col_names = label_df.columns[col_indices]
@@ -126,6 +146,10 @@ for i in range(len(df_selaras)):
   df_selaras.loc[i, 'Topic2'] = df['cleaned_text'][df.query('FileName == @res2').index[0]][0]
 
 st.dataframe(df_selaras[['Perundangan1', 'Perundangan2']], use_container_width=True)
+end_time = time.time()
+execution_time = end_time - start_time
+
+st.warning(f"Memerlukan waktu {execution_time:.2f} detik untuk dieksekusi.")
 
 # st.dataframe(all_selaras[['Perundangan1', 'Perundangan2']], use_container_width=True)
 

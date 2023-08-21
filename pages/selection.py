@@ -7,6 +7,7 @@ from fuzzywuzzy import process
 import networkx as nx
 import matplotlib.pyplot as plt
 import textwrap
+import time
 
 add_page_title(layout="wide")
 
@@ -60,6 +61,7 @@ if filtered_rows.empty:
 else:
     # print("Hasil:")
     st.write("Hasil:")
+    start_time = time.time()
     for value in selected_data:
         if any(filtered_rows['Perundangan1'] == value) or any(filtered_rows['Perundangan2'] == value):
             # print(f'{value} memiliki keselarasan')
@@ -118,3 +120,8 @@ else:
     plt.tight_layout()
     plt.show()
     st.pyplot(plt)
+
+    end_time = time.time()
+    execution_time = end_time - start_time
+
+    st.warning(f"Memerlukan waktu {execution_time:.2f} detik untuk dieksekusi.")
