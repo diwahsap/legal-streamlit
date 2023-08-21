@@ -61,10 +61,11 @@ plt.figure(figsize=(12, 8))
 pos = nx.spring_layout(G_topic, seed=42, k=1.5)
 
 num_colors = len(selected_nodes)
-colormap = plt.cm.get_cmap('tab20', num_colors)
 
+colormap = plt.cm.get_cmap('Pastel1', num_colors)
 color = colormap(cluster_selection - 1)
-nx.draw_networkx_nodes(G_topic, pos, node_color=color, node_size=3000, label=f"Cluster {cluster_selection}")
+node_colors = [color] * len(G_topic.nodes())
+nx.draw_networkx_nodes(G_topic, pos, node_color=node_colors, node_size=3000, label=f"Cluster {cluster_selection}")
 
 nx.draw_networkx_edges(G_topic, pos, width=1.5, alpha=0.7)
 label_pos = {node: (x, y) for node, (x, y) in pos.items()}
