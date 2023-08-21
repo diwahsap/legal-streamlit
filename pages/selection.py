@@ -65,8 +65,8 @@ else:
             # print(f'{value} memiliki keselarasan')
             st.write(f'{value} memiliki keselarasan')
         elif not any(filtered_rows['Perundangan1'] == value) and not any(filtered_rows['Perundangan2'] == value):
-            # print(f'{value} tidak memiliki keselarasa')
-            st.write(f'{value} tidak memiliki keselarasa')
+            # print(f'{value} tidak memiliki keselarasan')
+            st.write(f'{value} tidak memiliki keselarasan')
 
     def make_graph(dataframe):
         # Create a graph and add edges based on the similarities between 'Perundangan1' and 'Perundangan2'
@@ -105,7 +105,7 @@ else:
         label_pos = {node: (x, y) for node, (x, y) in pos.items()}
         wrapped_labels = {node: '\n'.join(textwrap.wrap(node, width=20)) for node in G_topic.nodes()}
         nx.draw_networkx_labels(G_topic, label_pos, labels=wrapped_labels, font_size=7, font_color='black', font_weight='bold')
-        plt.title(f"Hubungan Keselarasan pada Klaster {index + 1}")
+        plt.title(f"Hubungan Keselarasan pada Pilihan {index + 1}")
 
     # Topics list
     index = range(len(topics_dict))
