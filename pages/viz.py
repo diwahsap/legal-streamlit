@@ -62,7 +62,7 @@ pos = nx.spring_layout(G_topic, seed=42, k=1.5)
 
 num_colors = len(selected_nodes)
 
-colormap = plt.cm.get_cmap('Pastel1', num_colors)
+colormap = plt.cm.get_cmap('Pastel2', num_colors)
 color = colormap(cluster_selection - 1)
 node_colors = [color] * len(G_topic.nodes())
 nx.draw_networkx_nodes(G_topic, pos, node_color=node_colors, node_size=3000, label=f"Cluster {cluster_selection}")

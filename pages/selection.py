@@ -96,7 +96,7 @@ else:
 
         # Choose a colormap with x distinct colors and select the color for the topic
         num_colors = len(topics_dict)
-        colormap = plt.cm.get_cmap('Pastel1', num_colors)
+        colormap = plt.cm.get_cmap('Pastel2', num_colors)
         color = colormap(index)
         node_colors = [color] * len(G_topic.nodes())
         nx.draw_networkx_nodes(G_topic, pos, node_color=node_colors, node_size=3000, label=f"Topic {index}")
