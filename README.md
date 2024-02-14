@@ -24,4 +24,4 @@ The project successfully implements the TF-IDF algorithm, providing an effective
 Future enhancements could include integrating POS-Tagging, Named Entity Recognition (NER), and Dependency Parsing. Additionally, exploring other similarity algorithms like Jaccard, Euclidean, or Manhattan distance is suggested for further evaluation steps.
 
 ## Conclusion
-TF-IDF is a robust method for analyzing regulatory alignment in investment-related legislations in Indonesia. The project provides useful insights and visualizations, making it a valuable tool for legal analysis.
+TF-IDF is a method that can be said to be strong for analyzing the harmonization of regulations in laws and regulations related to investment in Indonesia. This project provides useful insights and visualizations, making it a valuable tool for legal analysis.
